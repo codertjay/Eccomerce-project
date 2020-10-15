@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load crispy_forms_filters %}
+
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-8 offset-2">
+
+            <form action="" class="card shadow bg-white rounded form-group m-5 p-5  mx-auto">
+            <h1 class="display-4 font-weight-bolder "> Product Form  </h1>
+            {{ form|crispy }}
+            <button class="btn btn-block btn-blue ">Submit</button>
+            </form>
+
+        </div>
+    </div>
+<div class="shadow p-3 mb-5 bg-light rounded">Regular shadow</div>
+
+<div class="shadow-lg p-3 mb-5 bg-white rounded">Larger shadow</div>
+
+
+    <div class="card">
+
+              <div class="card-body">
+                <!--Header -->
+                <div class="form-header blue accent-1">
+                  <h3><i class="fas fa-envelope"></i> Write to us:</h3>
+                </div>
+
+                <p>We'll write rarely, but only the best content.</p>
+                <br>
+
+                <!--Body -->
+                <div class="md-form">
+                  <i class="fas fa-user prefix grey-text"></i>
+                  <input type="text" id="form-name" class="form-control">
+                  <label for="form-name">Your name</label>
+                </div>
+
+                <div class="md-form">
+                  <i class="fas fa-envelope prefix grey-text"></i>
+                  <input type="text" id="form-email" class="form-control">
+                  <label for="form-email">Your email</label>
+                </div>
+
+                <div class="md-form">
+                  <i class="fas fa-tag prefix grey-text"></i>
+                  <input type="text" id="form-Subject" class="form-control">
+                  <label for="form-Subject">Subject</label>
+                </div>
+
+                <div class="md-form">
+                  <i class="fas fa-pencil-alt prefix grey-text"></i>
+                  <textarea type="text" id="form-text" class="md-textarea form-control" rows="3"></textarea>
+                  <label for="form-text" class="">Icon Prefix</label>
+                </div>
+
+                <div class="text-center mt-4">
+                  <button class="btn btn-light-blue waves-effect waves-light">Submit</button>
+                </div>
+
+              </div>
+
+            </div>
+
+
+
+</div>
+
+{% endblock content %}

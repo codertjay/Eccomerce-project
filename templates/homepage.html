@@ -1,0 +1,194 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <!-- Grid row -->
+    <div class="row ">
+
+        <!-- Content -->
+        <div class="col-lg-12">
+
+
+            <div id="home" class="view streak home_page ">
+
+                <div class="mask rgba-black-slight">
+
+                    <div class="container h-100 d-flex justify-content-center align-items-center">
+
+                        <div class="row smooth-scroll">
+
+                            <div class="col-md-12">
+
+                                <div class="wow fadeInUp text-center">
+
+                                    <h2 class="display-2 font-weight-bold white-text text-uppercase mb-3">New
+                                        collections</h2>
+                                    <h4 class=" text-capitalize font-weight-bold white-text text-info">Special
+                                        prices </h4>
+
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+        <!-- Content -->
+
+    </div>
+
+
+
+
+
+
+
+
+
+    <div class="row" id="shop_now">
+        <section class="container mt-5 ">
+
+            {% comment %} title {% endcomment %}
+            <div class="row mb-3 ">
+                <div class="col text-center">
+                    <h1 class="display-4 text-uppercase text-dark mb-0">
+                        {#                        <strong>Product </strong>#}
+                    </h1>
+                    <div class="title-underline bg-warning "></div>
+                </div>
+            </div>
+
+
+            <div class="row justify-content-center mx-auto">
+
+
+                {% for product in products %}
+                    <!-- Grid column -->
+                    <div class="col-lg-4 col-md-6 mb-4 mt-4 mx-auto col-sm-4 offset-sm-3">
+
+                        <!-- Card -->
+                        <div class="card card-ecommerce">
+
+                            <!-- Card image -->
+                            <div class=" my_image_size view overlay  ">
+                                <a href="{% url 'core:detail' product.slug %}">
+                                    <img src="{{ product.imageUrl }}" class="img-fluid " alt=""></a>
+                            </div>
+                            <!-- Card image -->
+
+                            <!-- Card content -->
+                            <div class="card-body">
+
+                                <!-- Category & Title -->
+                                <h5 class="card-title mb-1"><strong><a href="{% url 'core:detail' product.slug %}"
+                                                                       class="dark-grey-text">{{ product.name }}</a></strong>
+                                </h5>
+
+                                <a href="{% url 'core:detail' product.slug %}">
+                                    <span class="badge badge-danger mb-2">{{ product.name }}</span>
+                                </a>
+
+
+                                {% comment %} there wouldd be an if statement in here {% endcomment %}
+                                <!-- Rating -->
+                                <ul class="rating">
+                                    <li><i class="fas fa-star blue-text"></i></li>
+                                </ul>
+                                {% comment %} ende of it statement {% endcomment %}
+
+                                <!-- Card footer -->
+                                <div class="card-footer pb-0">
+
+                                    <div class="row mb-0">
+                                        {% if product.discount_price %}
+                                            <span class="float-left"><strong>{{ product.discount_price }}</strong></span>
+                                        {% else %}
+                                            <span class="float-left"><strong>{{ product.price }}</strong></span>
+
+                                        {% endif %}
+
+                                        <span class="float-right">
+                    <a class="" data-toggle="tooltip" data-placement="top" title="Add to Cart"
+                       onclick="my_event_listener('{{ product.slug }}','add','{% url "core:add_to_cart" product.slug %}')"><i
+                            class="fas fa-shopping-cart ml-3"></i></a>
+                  </span>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <!-- Card content -->
+
+                        </div>
+                        <!-- Card -->
+
+                    </div>
+                    <!-- Grid column -->
+                {% endfor %}
+
+
+            </div>
+            <!-- Grid row -->
+
+            <section>
+                <div class="row justify-content-center mb-4">
+                    {% include 'pagination.html' %}
+
+                </div>
+
+            </section>
+
+
+        </section>
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+    <div class="streak streak-photo streak_image"
+    >
+
+        <div class="flex-center white-text pattern-1">
+            <ul class="list-unstyled">
+                <li>
+                    <h1 class=" white-text">
+                        <strong>500+</strong>Recent Items </h1>
+                </li>
+
+            </ul>
+        </div>
+
+    </div>
+
+
+    {% for product in recent_product %}
+        <div class="row">
+        <div class="col-4">
+            {% include 'recent_item.html' %}
+        </div>
+
+    {% endfor %}
+
+    <!-- Section: Products -->
+
+    <!-- Grid row -->
+
+{% endblock %}

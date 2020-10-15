@@ -1,0 +1,50 @@
+.my_image_size {
+    height: 200px !important;
+}
+
+.my_image_size2 {
+    height: 233px !important;
+    width: 350px !important;
+}
+
+
+.home_page {
+    min-height: 80vh;
+    /*this is for the overlay dark color for the back ground*/
+    background: url(../img/image/pexels-photo.jpg) center/cover no-repeat fixed;
+}
+
+
+
+.title-underline {
+    width: 300px;
+    height: 10px;
+    margin: 0 auto;
+}
+
+
+.my_text_color {
+    color: #15658d !important;
+}
+
+.my_profile_image {
+    width: 300px;
+    height: auto;
+}
+.cart_image {
+    width: 200px;
+    height: 100px;
+}
+
+.my_profile_image_color {
+    background-color: rgba(255, 118, 17, 0.76) !important;
+}
+
+
+.streak_image {
+    background-image: url('../img/image/pexels-photo-356056.jpeg')
+}
+
+.my_view_height{
+    max-height: 50%;
+}

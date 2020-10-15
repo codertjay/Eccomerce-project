@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+
+    <div class="container mt-5">
+        <h1>profile </h1>
+
+        <div class="row">
+
+
+            <div class="col-lg-4 mb-4">
+
+                <!-- Card -->
+                <div class="card card-cascade narrower">
+
+                    <!-- Card image -->
+                    <div class="view view-cascade gradient-card-header blue mdb-color lighten-2">
+                        <h5 class="mb-0 font-weight-bold">{{ profile.username }}</h5>
+                    </div>
+                    <!-- Card image -->
+
+                    <!-- Card content -->
+                    <div class="card-body card-body-cascade text-center">
+                        <img src="{{ profile.image.url }}" alt="User Photo"
+                             class="z-depth-1 mb-3 mx-auto my_profile_image rounded">
+
+                        <p class="text-muted"><small>{{ profile.email }}</small></p>
+                        <div class="row flex-center">
+                        </div>
+                    </div>
+                    <!-- Card content -->
+
+                </div>
+                <!-- Card -->
+
+            </div>
+
+
+            <div class="col-lg-8 mb-4">
+
+                <!-- Card -->
+                <div class="card card-cascade narrower">
+
+                    <!-- Card image -->
+                    <div class="view view-cascade gradient-card-header mdb-color lighten-3">
+                        <h5 class="mb-0 font-weight-bold">Edit Account</h5>
+                    </div>
+                    <!-- Card image -->
+
+                    <!-- Card content -->
+                    <div class="card-body card-body-cascade text-center">
+
+
+                        <form action="{% url 'customer:profile' %}" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+
+                            {{ form|crispy }}
+                            <button class="btn btn-block btn-primary ">Update</button>
+                        </form>
+                    </div>
+                    <!-- Card content -->
+
+                </div>
+                <!-- Card -->
+
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
+
+<!-- Edit Form -->
+<form>
+    <!-- First row -->
+
+    <div class="row">
+
+        <!-- First column -->
+        <div class="col-md-6">
+            <div class="md-form mb-0">
+                <input type="text" id="form1" class="form-control validate" value="Company, inc" disabled="">
+                <label for="form1" data-error="wrong" data-success="right" class="active">Company</label>
+            </div>
+        </div>
+        <!-- Second column -->
+        <div class="col-md-6">
+            <div class="md-form mb-0">
+                <input type="text" id="form2" class="form-control validate">
+                <label for="form2" data-error="wrong" data-success="right">Username</label>
+            </div>
+        </div>
+    </div>
+    <!-- First row -->
+
+    <!-- First row -->
+    <div class="row">
+
+        <!-- Second column -->
+        <div class="col-md-6">
+            <div class="md-form mb-0">
+                <input type="text" id="form82" class="form-control validate">
+                <label for="form82" data-error="wrong" data-success="right">Last name</label>
+            </div>
+        </div>
+    </div>
+    <!-- First row -->
+
+    <!-- Second row -->
+    <div class="row">
+
+        <!-- First column -->
+        <div class="col-md-6">
+
+            <div class="md-form mb-0">
+                <input type="email" id="form76" class="form-control validate">
+                <label for="form76">Email address</label>
+            </div>
+        </div>
+        <!-- Second column -->
+
+
+    </div>
+    <!-- Second row -->
+
+
+</form>
+<!-- Edit Form -->
+
+

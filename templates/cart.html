@@ -1,0 +1,237 @@
+{% extends 'base.html' %}
+
+
+<body class="cart-v2 hidden-sn white-skin animated">
+{% block content %}
+    <div class="container">
+
+        <!-- Section cart -->
+        <section class="section my-5 pb-5 container">
+
+            <div class="card card-ecommerce">
+
+                <div class="card-body">
+
+                    <!-- Shopping Cart table -->
+                    <div class="table-responsive product-table table-cart-v-2 ">
+
+                        <table class="table product-table table-cart-v-1">
+
+                            <!-- Table head -->
+                            <thead>
+
+                            <tr>
+
+
+                                <th class="font-weight-bold">
+
+                                    <strong>Image</strong>
+
+                                </th>
+
+
+                                <th class="font-weight-bold">
+
+                                    <strong>Product</strong>
+
+                                </th>
+
+                                <th class="font-weight-bold">
+
+                                    <strong>Price</strong>
+
+                                </th>
+
+                                <th class="font-weight-bold">
+
+                                    <strong>QTY</strong>
+
+                                </th>
+
+                                <th class="font-weight-bold">
+
+                                    <strong>Amount</strong>
+
+                                </th>
+
+
+                            </tr>
+
+                            </thead>
+                            <!-- Table head -->
+
+                            <!-- Table body -->
+                            <tbody>
+
+
+                            {% for order_item in order_items.products.all %}
+                                <!-- Third row -->
+                                <tr>
+
+                                    <th scope="row">
+
+                                        <img src="{{ order_item.products.imageUrl }}" alt=""
+                                             class="img-fluid z-depth-0">
+
+                                    </th>
+
+
+                                    <td>
+
+                                        <h5 class="mt-3">
+                                            <strong>{{ order_item.products.name }}</strong>
+                                        </h5>
+                                        {#                  <p class="text-muted">by {{ order_item.products. }}</p>#}
+                                    </td>
+
+
+                                    <td class="font-weight-bold">
+                                        {% if order_item.products.discount_price %}
+                                            ${{ order_item.products.discount_price }}
+                                        {% else %}
+                                            ${{ order_item.products.price }}
+                                        {% endif %}
+                                    </td>
+
+
+                                    <span class="text-center text-md-left">
+
+                    <td class="font-weight-bold">
+                     <a class="btn btn-sm btn-primary btn-rounded waves-effect waves-light"
+                        href="{% url 'core:add_to_cart' order_item.products.slug %}">
+                         <i class="fa fa-angle-double-up"></i></a>
+
+                      <span class="order_item_quantity qty mt-2" id="item_quantity">{{ order_item.quantity }} </span>
+
+                     <a class="btn btn-sm btn-primary btn-rounded waves-effect waves-light"
+                        href="{% url 'core:remove_single_item_from_cart' order_item.products.slug %}">
+                         <i class="fa fa-angle-double-down"></i></a>
+                    </td>
+            </span>
+
+
+                                    <td class="font-weight-bold">
+                                        <strong>${{ order_item.get_product_price }}</strong>
+                                    </td>
+
+
+                                    <td class="font-weight-bold">
+                                        <a class="btn btn-sm btn-danger waves-effect waves-light" data-toggle="tooltip"
+                                           data-placement="top" title="" data-original-title="Remove item"
+                                           href="{% url "core:remove_items_from_cart" order_item.products.slug %}">
+                                            <i class="fa fa-trash"></i></a>
+                                    </td>
+
+
+                                </tr>
+                                <!-- Third row -->
+                            {% endfor %}
+
+                            </tbody>
+                            <!-- Table body -->
+
+                        </table>
+
+
+                    </div>
+                    <!-- Shopping Cart table -->
+
+                    {% comment %} checkot button {% endcomment %}
+                    {% if not order_items.products %}
+
+                        <div class="flex justify-content-around">
+                            <h1 class="font-weight-bold blue-text ">
+                  <span> checkout
+               <a href="{% url 'customer:checkout' %}" class="float-right btn btn-outline-primary rounded">checkout</a>
+                  </span>
+                            </h1>
+                        </div>
+                    {% else %}
+                        <div class="flex justify-content-around">
+                            <h1 class="font-weight-bold blue-text ">
+                  <span> Home page
+               <a href="{% url 'customer:checkout' %}" class="float-right btn btn-outline-primary rounded">Purchase items</a>
+                  </span>
+                            </h1>
+                        </div>
+
+
+                    {% endif %}
+
+                    {% comment %} end of checlout button {% endcomment %}
+
+                </div>
+
+            </div>
+
+        </section>
+        <!-- Section cart -->
+
+
+        <!-- Section products -->
+        <section>
+
+            <h4 class="font-weight-bold mt-4 title-1">
+                <strong>YOU MAY BE INTERESTED IN</strong></h4>
+            <hr class="blue mb-5">
+
+            <!-- Grid row -->
+            <div class="row mb-3 mx-auto">
+
+                {% for product in products %}
+                    <!-- Grid column -->
+                    <div class="col-lg-4 col-md-6 mb-md-0 mb-4 mx-auto ">
+
+                        <!-- Featured image -->
+                        <div class="my_image_size2 view overlay rgba-white-slight z-depth-1-half mb-2 ">
+                            <img src="{{ product.imageUrl }}" class="img-fluid" alt="Second sample image">
+                            <a>
+                                <div class="mask waves-effect waves-light"></div>
+                            </a>
+                        </div>
+
+                        <!-- Excerpt -->
+                        <h3 class="mb-3 font-weight-500 font-weight-bold">{{ product.name }}</h3>
+                        <p>by <a href="{% url 'core:detail' product.slug %}"
+                                 class="font-weight-500">Billy Forester</a>, {{ product.time_stamp }}</p>
+                        <a class=" btn btn-primary btn-sm "
+                           href="{% url 'core:add_to_cart' product.slug %}">
+                            Add to cart
+                        </a>
+                        <a class=" btn btn-warning btn-sm "
+                           href="{% url 'core:product_category_view' product.get_category_display %}">
+                            {{product.get_category_display}}
+                        </a>
+                        <a href="{% url 'core:detail' product.slug %}"
+                           class="btn btn-outline-info btn-sm py-2 ">Read more</a>
+                        <hr>
+                    </div>
+                    <!-- Grid column -->
+
+                {% endfor %}
+
+
+            </div>
+            <!-- Grid row -->
+            <hr>
+            <hr>
+
+
+            <!-- Grid more products to home page  -->
+            <div class="row flex-center mb-5">
+
+                <p>
+                    <a href="{% url 'core:home' %}" class="btn btn-primary btn-rounded mb-5">More products</a>
+                </p>
+
+
+            </div>
+            <!-- Grid row -->
+            <hr>
+        </section>
+        <!-- Section products -->
+    </div>
+{% endblock content %}
+</body>
+
+</html>

@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+ <!-- Section: product details -->
+    <section id="productDetails" class="pb-5">
+
+      <!-- News card -->
+      <div class="card mt-5 hoverable">
+
+        <div class="row mt-5">
+
+          <div class="col-lg-6">
+
+            <div class="row mx-2">
+
+              <!-- Carousel Wrapper -->
+              <div id="carousel-thumb" class="carousel slide carousel-fade carousel-thumbnails mb-5 pb-4"
+                data-ride="carousel">
+
+                <!-- Slides -->
+                <div class="carousel-inner text-center text-md-left" role="listbox">
+
+                  <div class="carousel-item active">
+
+                    <img src="{{ product.imageUrl}}" alt="First slide"
+                      class="img-fluid">
+
+                  </div>
+                     </div>
+                <!-- Slides -->
+           </div>
+              <!-- Carousel Wrapper -->
+
+
+            </div>
+
+
+          </div>
+
+          <div class="col-lg-5 mr-3 text-center text-md-left">
+
+            <h2
+              class="h2-responsive text-center text-md-left product-name font-weight-bold dark-grey-text mb-1 ml-xl-0 ml-4">
+
+              <strong>{{ product.name}}</strong>
+
+            </h2>
+
+
+
+
+            <h3 class="h3-responsive text-center text-md-left mb-5 ml-xl-0 ml-4">
+
+              <span class="red-text font-weight-bold">
+              {% if product.discount_price %}
+                <strong>${{ product.discount_price }}</strong>
+               <span class="grey-text">
+                <small>
+                  <s>{{ product.price }}</s>
+                </small>
+              </span>
+              {% else %}
+                  <strong>${{ product.price }}</strong>
+              </span>
+            {% endif %}
+
+            </h3>
+
+            <p class="ml-xl-0 ml-4">{{ product.description}}.
+
+            </p>
+
+            <!-- Add to Cart -->
+            <section class="color">
+              <div class="mt-5">
+
+                <div class="row mt-3 mb-4">
+
+                  <div class="col-md-12 text-center text-md-left text-md-right">
+
+                  <a href="{% url 'core:add_to_cart' product.slug %}" class="btn btn-lg rounded-lg btn-primary">
+                  <i class="fas fa-cart-plus mr-2" aria-hidden="true"></i> Add to cart</a>
+
+                  </div>
+
+                </div>
+
+              </div>
+            </section>
+            <!-- Add to Cart -->
+
+          </div>
+
+        </div>
+
+      </div>
+      <!-- News card -->
+
+
+
+    </section>
+
+</div>
+{% endblock content %}

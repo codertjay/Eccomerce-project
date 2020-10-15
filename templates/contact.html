@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load crispy_forms_filters %}
+
+
+
+{% block content %}
+
+<div class="container">
+<div class="row  mt-5">
+    <div class="col-8 offset-1 mx-auto">
+    <div class="card my-5">
+
+        <div class="card-body ">
+
+                <!--Header -->
+                <div class="form-header blue accent-1 ">
+                  <h3><i class="fas fa-envelope"></i> Write to us:</h3>
+                </div>
+
+                <p class="display-1 font-italic lead text-light mx-auto">Feel free.</p>
+                <br>
+
+                <!--Body -->
+            {{ form.errors }}
+                  <form action="{% url 'customer:contact' %}" method="post">
+                      {% csrf_token %}
+                <div class="md-form">
+                  <i class="fas fa-user prefix grey-text"></i>
+                    {{ form.name }}
+                </div>
+
+                <div class="md-form">
+                  <i class="fas fa-envelope prefix grey-text"></i>
+                    {{ form.email }}
+                </div>
+
+                <div class="md-form">
+                  <i class="fas fa-tag prefix grey-text"></i>
+                    {{ form.subject }}
+                </div>
+
+                <div class="md-form">
+                  <i class="fas fa-pencil-alt prefix grey-text"></i>
+                    {{ form.description }}
+                </div>
+
+                <div class="text-center mt-4">
+                  <button class="btn btn-light-blue waves-effect waves-light">Contact</button>
+                </div>
+
+              </form>
+
+              </div>
+
+            </div>
+</div>
+</div>
+
+
+</div>
+{% endblock %}

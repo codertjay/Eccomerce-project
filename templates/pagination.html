@@ -1,0 +1,63 @@
+<nav class="mb-4">
+
+    {% if is_paginated %}
+
+        <ul class="pagination pagination-circle pg-blue mb-0">
+
+            {% if page_obj.has_previous %}
+                <!-- First -->
+                <li class="page-item disabled clearfix d-none d-md-block"><a
+                        href="?page=1" class="page-link waves-effect waves-effect">First</a></li>
+
+                <!-- Arrow left -->
+                <li class="page-item disabled">
+                    <a href="?page={{ page_obj.previous_page_number }}"
+                       class="page-link waves-effect waves-effect" aria-label="Previous">
+                        <span aria-hidden="true">«</span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+
+                </li>
+            {% endif %}
+
+            {% for num in page_obj.paginator.page_range %}
+
+                {% if page_obj.number == num %}
+                    <!-- Numbers -->
+                    <li class="page-item active"><a href="?page={{ num }}"
+                                                    class="page-link waves-effect waves-effect">{{ num }}</a>
+                    </li>
+
+                {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+
+                    <li class="page-item"><a href="?page={{ num }}"
+                                             class="page-link waves-effect waves-effect">{{ num }}</a>
+                    </li>
+
+                {% endif %}
+
+            {% endfor %}
+
+
+            {% if page_obj.has_next %}
+                <!-- Arrow right -->
+                <li class="page-item">
+                    <a href="?page={{ page_obj.next_page_number }}"
+                       class="page-link waves-effect waves-effect" aria-label="Next">
+                        <span aria-hidden="true">»</span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </li>
+
+                <!-- First -->
+                <li class="page-item clearfix d-none d-md-block"><a
+                        href="?page={{ page_obj.paginator.num_pages }}"
+                        class="page-link waves-effect waves-effect">Last</a>
+                </li>
+
+                </ul>
+                `            {% endif %}
+
+    {% endif %}
+
+</nav>
